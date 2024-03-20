@@ -62,7 +62,7 @@ validate: function(sindhi){
 //print the marks of all subjects one at a time
 for (let i=1; i< marks.length; i++) {
     let subjects=[0, 'English','Mathematices', 'Science', 'Computer', 'S.Study', 'Urdu', 'Islamiyat', 'Sindhi'];
-    console.log(subjects[i]+': ',marks[i]);
+    console.log(chalk.bgCyanBright(subjects[i]+': ',marks[i]));
 }
 
 //show total marks
