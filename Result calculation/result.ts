@@ -51,7 +51,7 @@ validate: function(isl){
     let isValid = !isNaN(isl)  && isl >= 0 ;
     return isValid || 'please enter the valid number';
 }},
-{name: "sindhi", type: "number", message: "Sindhi:\nenter obtained marks",
+{name: "sindhi", type: "number", message:chalk.bgMagenta("Sindhi:\nenter obtained marks"),
 validate: function(sindhi){
     parseFloat(sindhi);
     let isValid = !isNaN(sindhi)  && sindhi >= 0 ;
