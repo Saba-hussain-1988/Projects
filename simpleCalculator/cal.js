@@ -1,3 +1,4 @@
+#! /user/bin/env node
 import inquirer from "inquirer";
 import chalk from "chalk";
 // prompt to take input from user 

@@ -1,6 +1,12 @@
-import inquirer from "inquirer";
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const inquirer_1 = __importDefault(require("inquirer"));
+const chalk_1 = __importDefault(require("chalk"));
 //prompt to take user input
-let marks = await inquirer.prompt([
+let marks = await inquirer_1.default.prompt([
     { name: "totalMarksPerPaper", type: "number", message: "enter the total marks of a paper",
         validate: function (totalMarksPerPaper) {
             parseFloat(totalMarksPerPaper);
@@ -19,37 +25,37 @@ let marks = await inquirer.prompt([
             let isValid = !isNaN(math) && math >= 0;
             return isValid || 'please enter the valid number';
         } },
-    { name: "sci", type: "number", message: "English:\nenter obtained marks",
+    { name: "sci", type: "number", message: "Science:\nenter obtained marks",
         validate: function (sci) {
             parseFloat(sci);
             let isValid = !isNaN(sci) && sci >= 0;
             return isValid || 'please enter the valid number';
         } },
-    { name: "comp", type: "number", message: "English:\nenter obtained marks",
+    { name: "comp", type: "number", message: "Computer:\nenter obtained marks",
         validate: function (comp) {
             parseFloat(comp);
             let isValid = !isNaN(comp) && comp >= 0;
             return isValid || 'please enter the valid number';
         } },
-    { name: "sSt", type: "number", message: "English:\nenter obtained marks",
+    { name: "sSt", type: "number", message: "S.Study:\nenter obtained marks",
         validate: function (sSt) {
             parseFloat(sSt);
             let isValid = !isNaN(sSt) && sSt >= 0;
             return isValid || 'please enter the valid number';
         } },
-    { name: "urdu", type: "number", message: "English:\nenter obtained marks",
+    { name: "urdu", type: "number", message: "Urdu:\nenter obtained marks",
         validate: function (urdu) {
             parseFloat(urdu);
             let isValid = !isNaN(urdu) && urdu >= 0;
             return isValid || 'please enter the valid number';
         } },
-    { name: "isl", type: "number", message: "English:\nenter obtained marks",
+    { name: "isl", type: "number", message: "Islamiyat:\nenter obtained marks",
         validate: function (isl) {
             parseFloat(isl);
             let isValid = !isNaN(isl) && isl >= 0;
             return isValid || 'please enter the valid number';
         } },
-    { name: "sindhi", type: "number", message: "English:\nenter obtained marks",
+    { name: "sindhi", type: "number", message: chalk_1.default.bgMagenta("Sindhi:\nenter obtained marks"),
         validate: function (sindhi) {
             parseFloat(sindhi);
             let isValid = !isNaN(sindhi) && sindhi >= 0;
@@ -59,7 +65,7 @@ let marks = await inquirer.prompt([
 //print the marks of all subjects one at a time
 for (let i = 1; i < marks.length; i++) {
     let subjects = [0, 'English', 'Mathematices', 'Science', 'Computer', 'S.Study', 'Urdu', 'Islamiyat', 'Sindhi'];
-    console.log(subjects[i] + ': ', marks[i]);
+    console.log(chalk_1.default.bgCyanBright(subjects[i] + ': ', marks[i]));
 }
 //show total marks
 let totalMarks = marks.totalMarksPerPaper * 8;
