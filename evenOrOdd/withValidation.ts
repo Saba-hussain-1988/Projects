@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 import inquirer from "inquirer";
 import chalk from "chalk";
 
@@ -10,7 +12,7 @@ let number = await inquirer.prompt([
 validate: function(num){
     Number(num);
     let isValid = !isNaN(num) ;
-    return isValid || 'Please enter a valid number.';
+    return isValid || chalk.red('Please enter a valid number.');
 }},
 ]);
 
@@ -19,5 +21,5 @@ validate: function(num){
 if ((number.num % 2) === 0) {
     console.log(chalk.magentaBright(number.num, 'is an even number.'));
 } else  {
-    console.log(chalk.cyanBright(number.num , 'is an odd number.'));
+    console.log(chalk.cyan(number.num , 'is an odd number.'));
 } 

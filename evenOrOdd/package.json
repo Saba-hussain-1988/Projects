@@ -1,20 +1,21 @@
 {
-  "name": "evenorodd",
+  "name": "srchohan_even_or_odd_manager",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
+  "bin": "withValidation.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "s_r_chohan",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.11.30"
   },
   "dependencies": {
     "chalk": "^5.3.0",
     "inquirer": "^9.2.16"
-  }
+  },
+  "description": ""
 }

@@ -1,10 +1,11 @@
 {
-  "name": "guessnumbergame_by_s.r.chohan",
-  "version": "1.0.0",
+  "name": "srchohan_numberguessinggame",
+  "version": "2.0.2",
   "description": "",
   "main": "index.js",
   "type": "module",
-  "bin": "game.js",
+  "bin": "game.js"
+  ,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
