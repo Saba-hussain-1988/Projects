@@ -1,20 +1,19 @@
 {
-  "name": "srchohan_exams_result-calculation_tool",
+  "name": "srchohan_print_table_tool",
   "version": "1.0.0",
-  "description": "helps to calculate the total obtained marks, percentage, grade and remarks of a student in exam",
   "main": "index.js",
   "type": "module",
-  "bin": {
-    "srchohan_exams_result-calculation_tool": "result.js"
-  },
+  "bin": "table.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "s_r_chohan",
   "license": "MIT",
+  "keywords": [],
+  "description": "",
   "devDependencies": {
-    "@types/node": "^20.11.29"
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.11.30"
   },
   "dependencies": {
     "chalk": "^5.3.0",
