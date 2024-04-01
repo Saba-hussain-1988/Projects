@@ -35,9 +35,10 @@ if (ans.pin === myPin) {
     else if (operAns.operation === 'checkBalance') {
         //print the current balance
         console.log(`Your account balance is ${currentBalance}`);
-        //if user wants to transfer maney
+        //if user wants to transfer money
     }
     else if (operAns.operation === 'fundTransfer') {
+        let accountNum = await inquirer.prompt({ name: "account", type: "input", message: chalk.rgb(250, 250, 300)('enter account number which you want to transfer money.') });
         let amountAns = await inquirer.prompt({ name: "amount", type: "number", message: chalk.rgb(246, 135, 222)('enter your amount.') });
         //check if the amount is greater than current balance
         if (amountAns.amount > currentBalance) {
@@ -50,6 +51,7 @@ if (ans.pin === myPin) {
         }
         else {
             currentBalance -= amountAns.amount;
+            accountNum.account = amountAns.amount;
             console.log(chalk.rgb(117, 211, 252)(`Transfer successful. Your remaining account balance is:   ${currentBalance}`));
         }
         //if user choose fast cash, action performe according to choice
