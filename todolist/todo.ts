@@ -23,11 +23,6 @@ while (condition) {
             name : 'options', type: 'list', choices: ['Add', 'Edit', 'Delete', 'Undo'],
             message:  chalk.rgb(245, 138, 250)('select an option which you want to act:'),
 
-            // and also make sure that the input is not blank
-            validate: function(options){
-                let isValid = options.length !== 0 ;
-                return isValid ||  chalk.rgb(245, 138, 250)('Please put some thing in your todo.');
-            }
         }
     )
 
@@ -40,7 +35,13 @@ while (condition) {
         let addTodo = await inquirer.prompt(
             {
                 name : 'add', type:'input',
-                message: chalk.rgb(191, 250, 90)('what do you want to add in your todo list?')
+                message: chalk.rgb(191, 250, 90)('what do you want to add in your todo list?'),
+                
+                // and also make sure that the input is not blank
+                validate: function(options){
+                let isValid = options.length !== 0 ;
+                return isValid ||  chalk.rgb(245, 138, 250)('Please put some thing in your todo.');
+                }
             }
         )
 
