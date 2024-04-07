@@ -2,8 +2,7 @@
 
 import inquirer from "inquirer";
 import chalk from "chalk";
-import Choices from "inquirer/lib/objects/choices.js";
-import { exit } from "process";
+
 
 //create an empty array of toDo list
 let todosList:string[] = [];
@@ -26,7 +25,7 @@ while (condition) {
     let optionsList = await inquirer.prompt(
         {
             name : 'options', type: 'list', choices: ['Add', 'Edit', 'Delete', 'Undo', 'list mannager'],
-            message:  chalk.rgb(249, 166, 151)('select an option which you want to act:'),
+            message:  chalk.rgb(255, 135, 0)('select an option which you want to act:'),
 
         }
     )
@@ -64,7 +63,7 @@ while (condition) {
                   {
                       // ask to user to choose one of them which he want to edit
                       name: 'select', type: 'list', choices: todosList,
-                      message: chalk.rgb(200, 130, 45)('Do you want to edit, select en element:'),
+                      message: chalk.rgb(250, 5, 189)('Do you want to edit, select en element:'),
                   },
                   {
                       //to take new new input from user
@@ -141,7 +140,7 @@ while (condition) {
                            choices: [chalk.rgb(255, 100, 200).bold("Move" + " to" + " top"),
                            chalk.rgb(255, 30, 240).bold("Move" + " to " + "bottum"), 
                            chalk.rgb(255, 190, 255).bold("Other"), 
-                           chalk.rgb(255, 200, 240).bold("Exit(go to main manue)") ],
+                           chalk.rgb(255, 200, 240).bold("Exit(go to main menu)") ],
                            message: chalk.rgb(90, 255, 130).bold.italic("choose an option to perform: ")
                         }
                     )
@@ -176,14 +175,16 @@ while (condition) {
                     }
                      else if(todosMannager.mannage === chalk.rgb(255, 190, 255).bold("Other")) {
                         let MoveElement = await inquirer.prompt(
-                            {
-                                name:'move', type:'list', choices: todosList,
-                                message: chalk.rgb (200, 100, 255).italic.bold("Choose an element which you want to move: ")
-                            },
-                            {
-                                name: 'place', type: 'list', choices: todosList,
-                                message: chalk.rgb(49, 230, 230).italic("choose the place where you want to move,")
-                            }
+                            [
+                                {
+                                    name:'move', type:'list', choices: todosList,
+                                    message: chalk.rgb (200, 100, 255).italic.bold("Choose an element which you want to move: ")
+                                },
+                                {
+                                    name: 'place', type: 'list', choices: todosList,
+                                    message: chalk.rgb(49, 230, 230).italic("choose the place where you want to move,")
+                                }
+                            ]
                         )
                         let element:string = MoveElement.move
                         let num:number = todosList.indexOf(MoveElement.move);
@@ -196,10 +197,10 @@ while (condition) {
                         let exitMannager = await inquirer.prompt(
                             {
                                 name: "exitMenu", type: "confirm", default: false,
-                                message: 'Are you sure, you want to exit:'
+                                message:chalk.rgb(0, 255, 255) ('Are you sure, you want to exit:')
                             }
                         )
-                       isMannage = exitMannager.exitMenu;
+                       isMannage = !(exitMannager.exitMenu);
                     }
     
                 }
