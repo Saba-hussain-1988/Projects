@@ -12,7 +12,7 @@ let removedElement:string[] = [];
 
 //create a boolean variable(condition) for the working of the loop
 let condition:boolean = true;
-let isMannage:boolean = true;
+let isManage:boolean = true;
 
 //Wel come note
  console.log(chalk.rgb(250, 250, 0).bold.italic('\t \t \tWel Come to your ToDo list!\t \t \t'));
@@ -24,7 +24,7 @@ while (condition) {
     //show options of todos and ask to user to choose one of them
     let optionsList = await inquirer.prompt(
         {
-            name : 'options', type: 'list', choices: ['Add', 'Edit', 'Delete', 'Undo', 'list mannager'],
+            name : 'options', type: 'list', choices: ['Add', 'Edit', 'Delete', 'Undo', 'list manager'],
             message:  chalk.rgb(255, 135, 0)('select an option which you want to act:'),
 
         }
@@ -53,6 +53,8 @@ while (condition) {
         todosList.push(addTodo.add);
         console.log(chalk.yellowBright("your todo list:"), todosList );
     }
+
+
 //////// "Edit Todos" ////////
 
 // if user want to edit
@@ -126,54 +128,67 @@ while (condition) {
             }
         }
         
-    //////////////// 'list mannager/////////////////////
-        else if (optionsList.options === 'list mannager') {
+    //////////////// 'list manager/////////////////////
+        else if (optionsList.options === 'list manager') {
 
-           
+           ///////list manger works if todo list has atleast two elements
             if (todosList.length >= 2){
-                while (isMannage){
+                while (isManage){
                 
-                    let todosMannager = await inquirer.prompt (
+                    let todosManager = await inquirer.prompt (
                         {
-
-                           name: 'mannage', type: "list", 
+                                  ///list manager ask to user to choose a fum=nction
+                           name: 'manage', type: "list", 
                            choices: [chalk.rgb(255, 100, 200).bold("Move" + " to" + " top"),
-                           chalk.rgb(255, 30, 240).bold("Move" + " to " + "bottum"), 
+                           chalk.rgb(255, 30, 240).bold("Move" + " to " + "bottom"), 
                            chalk.rgb(255, 190, 255).bold("Other"), 
                            chalk.rgb(255, 200, 240).bold("Exit(go to main menu)") ],
                            message: chalk.rgb(90, 255, 130).bold.italic("choose an option to perform: ")
                         }
                     )
-                    if (todosMannager.mannage === chalk.rgb(255, 100, 200).bold("Move" + " to" + " top")) {
+
+                    /// if user want to move an alamant on the top of the list
+                    if (todosManager.manage === chalk.rgb(255, 100, 200).bold("Move" + " to" + " top")) {
                         let MoveToTop = await inquirer.prompt(
                             {
+                                //ask to user to choose an element
                                 name:'move', type:'list', choices: todosList,
                                 message: chalk.rgb (200, 100, 255).italic.bold("Choose an element which you want to move to top: ")
                             }
                         )
-                        let index:number = todosList.indexOf(MoveToTop.move);
 
-                        todosList.unshift(MoveToTop.move)
+                        //find the index of the element
+                        let index:number = todosList.indexOf(MoveToTop.move);
+                          
+                        //remove the element from the current index
                         todosList.splice(index, 1);
-                
+
+                        // add the element on the top of list
+                        todosList.unshift(MoveToTop.move)
+                        
+                        //print the updated list
                         console.log(chalk.rgb(255, 255, 180)("Your list is updated now,\nelement is moved to top now.\n\t\t", todosList));
 
                     }
-                     else if (todosMannager.mannage === chalk.rgb(255, 30, 240).bold("Move" + " to " + "bottum")) {
-                        let MoveToBottum = await inquirer.prompt(
+
+
+                    ///////////////Move to bottom
+
+                     else if (todosManager.manage === chalk.rgb(255, 30, 240).bold("Move" + " to " + "bottom")) {
+                        let MoveToBottom = await inquirer.prompt(
                             {
                                 name:'move', type:'list', choices: todosList,
-                                message: chalk.rgb (200, 100, 255).italic.bold("Choose an element which you want to move to bottum: ")
+                                message: chalk.rgb (200, 100, 255).italic.bold("Choose an element which you want to move to bottom: ")
                             }
                         )
-                        let index:number = todosList.indexOf(MoveToBottum.move);
+                        let index:number = todosList.indexOf(MoveToBottom.move);
                         todosList.splice(index, 1);
-                        todosList.push(MoveToBottum.move);
+                        todosList.push(MoveToBottom.move);
                        
-                        console.log(chalk.rgb(255, 255, 180)("Your list is updated now,\nelement is moved to bottum now.\n\t\t", todosList));
+                        console.log(chalk.rgb(255, 255, 180)("Your list is updated now,\nelement is moved to bottom now.\n\t\t", todosList));
 
                     }
-                     else if(todosMannager.mannage === chalk.rgb(255, 190, 255).bold("Other")) {
+                     else if(todosManager.manage === chalk.rgb(255, 190, 255).bold("Other")) {
                         let MoveElement = await inquirer.prompt(
                             [
                                 {
@@ -191,22 +206,22 @@ while (condition) {
                         todosList.splice(num, 1)
                         let index:number = todosList.indexOf(MoveElement.place);
                         todosList.splice(index, 0, element)
-                        console.log(chalk.rgb(255, 255, 180)("Your list is updated now,\nelement is moved to bottum now.\n\t\t", todosList));
+                        console.log(chalk.rgb(255, 255, 180)("Your list is updated now,\nelement is moved to bottom now.\n\t\t", todosList));
   
-                    } else if(todosMannager.mannage === chalk.rgb(255, 200, 240).bold("Exit(go to main menu)")){
-                        let exitMannager = await inquirer.prompt(
+                    } else if(todosManager.manage === chalk.rgb(255, 200, 240).bold("Exit(go to main menu)")){
+                        let exitManager = await inquirer.prompt(
                             {
                                 name: "exitMenu", type: "confirm", default: false,
                                 message:chalk.rgb(0, 255, 255) ('Are you sure, you want to exit:')
                             }
                         )
-                       isMannage = !(exitMannager.exitMenu);
+                       isManage = !(exitManager.exitMenu);
                     }
     
                 }
             }else {
-                console.log(chalk.rgb(30, 255, 250).italic('"List mannager" option can accessable when list has atleast two elements.'));
-                isMannage = false;
+                console.log(chalk.rgb(30, 255, 250).italic('"List manager" option can accessable when list has atleast two elements.'));
+                isManage = false;
             }
             
         
