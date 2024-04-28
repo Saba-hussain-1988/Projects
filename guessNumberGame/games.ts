@@ -66,15 +66,8 @@ while (condition) {
                         return isValid || chalk. rgb(232, 1, 253)('Please enter a valid number.');
                     }
 
-                },
-                {
-                    name: 'inOrOut', type: 'confirm', default: true,
-                    message: chalk. rgb(248, 158, 221)('Do you want to continue or not(Exit)?')
-                },
-                
-            ])
-
-            levelCondition = guess.inOrOut;
+                }   
+            ]);
 
         if (levelCondition){
                 
@@ -133,6 +126,14 @@ while (condition) {
             }
 
         }
+        let isContinue = await inquirer.prompt(
+            {
+                name: 'inOrOut', type: 'confirm', default: true,
+                message: chalk. rgb(248, 158, 221)('Do you want to continue or not(Exit)?')
+            },
+            
+        )
+        levelCondition = isContinue.inOrOut;
 
         }
 
@@ -173,11 +174,7 @@ while (condition) {
                     return isValid || chalk.rgb(175, 15, 244)('Please enter a valid number.');
                 }
 
-            },
-            {
-                name: 'inOrOut', type: 'confirm', default: true,
-                message: chalk.rgb(244, 108, 221)('Do you want to continue or not(Exit)?')
-            },
+            }
         ])
 
         levelCondition = guess.inOrOut;
@@ -238,6 +235,16 @@ while (condition) {
             }
     
         }
+
+        let isContinue = await inquirer.prompt(
+            {
+                name: 'inOrOut', type: 'confirm', default: true,
+                message: chalk. rgb(248, 158, 221)('Do you want to continue or not(Exit)?')
+            },
+            
+        )
+        levelCondition = isContinue.inOrOut;
+
     
        }
     }
@@ -278,11 +285,7 @@ while (condition) {
                     return isValid || chalk.rgb(62, 253, 192)('Please enter a valid number.');
                 }
 
-            },
-            {
-                name: 'inOrOut', type: 'confirm', default: true,
-                message: chalk.rgb(17, 201, 252)('Do you want to continue or not(Exit)?')
-            },
+            }
         ])
 
         levelCondition = guess.inOrOut;
@@ -343,6 +346,15 @@ while (condition) {
             }
     
         }
+        let isContinue = await inquirer.prompt(
+            {
+                name: 'inOrOut', type: 'confirm', default: true,
+                message: chalk. rgb(248, 158, 221)('Do you want to continue or not(Exit)?')
+            },
+            
+        )
+        levelCondition = isContinue.inOrOut;
+
     
     }
     }
