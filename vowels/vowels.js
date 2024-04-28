@@ -1,13 +1,18 @@
-import inquirer from "inquirer";
-import chalk from "chalk";
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const inquirer_1 = __importDefault(require("inquirer"));
+const chalk_1 = __importDefault(require("chalk"));
 let vowels = ['a', 'e', 'i', 'o', 'u'];
 let consonant = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
-let alpha = await inquirer.prompt({
-    name: 'vowe', type: "input", message: chalk.rgb(199, 249, 111)("please put a singal alphabet:"),
+let alpha = await inquirer_1.default.prompt({
+    name: 'vowe', type: "input", message: chalk_1.default.rgb(199, 249, 111)("please put a singal alphabet:"),
     validate: function (vowe) {
         let length = vowe.length();
         let isValide = isNaN(vowe) && length === 1;
-        return isValide || chalk.rgb(250, 82, 250)("please enter a singal number:");
+        return isValide || chalk_1.default.rgb(250, 82, 250)("please enter a singal number:");
     }
 });
 let letter = (alpha.vowe).toLowerCase();
