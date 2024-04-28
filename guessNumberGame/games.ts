@@ -20,8 +20,9 @@ let condition = true;
 //game runs with while loop
 while (condition) {
     //welcome note 
-    console.log(chalk.rgb(244, 136, 217).bold.italic('\n\n\t\t\t\tWELCOME in NUMBER GEUSSING GAME\n'));
-    console.log(chalk.rgb(244, 201, 136)('\tIt can helps to enhance your cognitive skills like critical thinking and problem-solving.\n'))
+    console.log(chalk.rgb(244, 136, 217).bold.italic.underline('\n\n\t\t\t\tWELCOME in NUMBER GEUSSING GAME\n'));
+    console.log(chalk.rgb(244, 201, 136)('\tIt can helps to enhance your cognitive skills like critical thinking and problem-solving.\n'));
+    console.log(chalk.rgb(0, 245, 250).bold.underline('\n \t\t"Main Menu"'))
 
     //ask to user to choose the level of game
     let level = await inquirer.prompt(
@@ -78,13 +79,15 @@ while (condition) {
                 let score = 10; 
 
                 // print the winning statement
-                console.log(chalk. rgb(243, 136, 136)(`Congratulation! your number is matched.\n round ${i} clear.`));
+                console.log(chalk. rgb(243, 136, 136)(`\nCongratulation! your number is matched.`));
+                console.log(chalk.rgb(231, 252, 78).bold(`\n round ${i} clear.`));
 
                 //add in total score
                 totalscore += score;
 
                 // print the score and total score
-                console.log(chalk.rgb(252, 218, 95)(`Current score: ${score}\nTotal score ${totalscore}`));
+                console.log(chalk. rgb(129, 246, 189)(`\ncurrent score: ${score}`));
+                console.log(chalk. rgb(199, 129, 246)(`\nTotal score: ${totalscore}`));
             }
             
             // if user loose the game
@@ -96,28 +99,31 @@ while (condition) {
                     let scorE = 2;
                     
                     // print the statement that user is close enough
-                    console.log(chalk.rgb(165, 245, 151)(`You were close enough.\nThe correct number was ${Num}`));
-
+                    console.log(chalk.rgb(103, 255, 184)(`\nYou were close enough.`));
+                    console.log(chalk.rgb(231, 252, 78).bold(`\nThe correct number is ${Num}.`));
+    
                     //add in total score
                     totalscore += scorE;
                     
                     //print the score and total score
-                    console.log(chalk. rgb(247, 229, 110)(`current score: ${scorE}\nTotal score: ${totalscore}`));
+                    console.log(chalk. rgb(129, 246, 189)(`\ncurrent score: ${scorE}`));
+                    console.log(chalk.rgb(199, 129, 246)(`\nTotal score: ${totalscore}`));
                 }
 
                 //if user geuss was wrong
                 else {
                     //print the loosing statement
-                    console.log(chalk. rgb(215, 139, 247)(`Sorry! you have lost 5 points.\nThe correct number is ${Num}.`));
+                    console.log(chalk.rgb(9, 202, 255)(`\nSorry! you have lost 5 points.`));
+                    console.log(chalk.rgb(231, 252, 78).bold(`\nThe correct number is ${Num}.`));
 
                     totalscore -= 5;
 
                     // total score 
-                    console.log(chalk. rgb(13, 236, 244)(`Your total score: ${totalscore}`));
+                    console.log(chalk. rgb(13, 236, 244)(`\nYour total score: ${totalscore}`));
 
                     // if score less then 0, game out
                     if (totalscore < 0){
-                        console.log(chalk. rgb(247, 156, 136)('Your score is less then 0. You have lost the game.'))
+                        console.log(chalk. rgb(247, 156, 136)('\nYour score is less then 0. You have lost the game.'))
                         levelCondition = false;
                     }
                     
@@ -126,15 +132,16 @@ while (condition) {
             }
 
         }
-        let isContinue = await inquirer.prompt(
-            {
-                name: 'inOrOut', type: 'confirm', default: true,
-                message: chalk. rgb(248, 158, 221)('Do you want to continue or not(Exit)?')
-            },
-            
-        )
-        levelCondition = isContinue.inOrOut;
-
+        if (levelCondition){
+            let isContinue = await inquirer.prompt(
+                {
+                    name: 'inOrOut', type: 'confirm', default: true,
+                    message: chalk. rgb(248, 158, 221)('\nDo you want to continue or not(go to main menu)?')
+                },
+                
+            )
+            levelCondition = isContinue.inOrOut;
+    }
         }
 
     }
@@ -175,9 +182,7 @@ while (condition) {
                 }
 
             }
-        ])
-
-        levelCondition = guess.inOrOut;
+        ]);
 
         if (levelCondition) {
             // check the answer of user is correct? 
@@ -187,13 +192,15 @@ while (condition) {
                 let score = 10; 
     
                 // print the winning statement
-                console.log(chalk.rgb(91, 190, 248)(`Congratulation! your number is matched.\n round ${i} clear.`));
-    
+                console.log(chalk. rgb(243, 136, 136)(`\nCongratulation! your number is matched.`));
+                console.log(chalk.rgb(231, 252, 78).bold(`\n round ${i} clear.`));
+
                 //add in total score
                 totalscore += score;
     
                 // print the score and total score
-                console.log(chalk.rgb(127, 106, 245)(`Current score: ${score}\nTotal score ${totalscore}`));
+                console.log(chalk. rgb(245, 195, 121)(`\ncurrent score: ${score}`));
+                console.log(chalk.rgb(199, 129, 246)(`\nTotal score: ${totalscore}`));
             }
              
             // if user loose the game
@@ -205,28 +212,31 @@ while (condition) {
                     let scorE = 2;
                      
                     // print the statement that user is close enough
-                    console.log(chalk.rgb(103, 255, 184)(`You were close enough.\nThe correct number was ${Num}`));
+                    console.log(chalk.rgb(103, 255, 184)(`\nYou were close enough.`));
+                    console.log(chalk.rgb(231, 252, 78).bold(`\nThe correct number is ${Num}.`));
     
                     //add in total score
                     totalscore += scorE;
                      
                     //print the score and total score
-                    console.log(chalk. rgb(245, 195, 121)(`current score: ${scorE}\nTotal score: ${totalscore}`));
+                    console.log(chalk. rgb(245, 195, 121)(`\ncurrent score: ${scorE}`));
+                    console.log(chalk.rgb(199, 129, 246)(`\nTotal score: ${totalscore}`));
                 }
     
                 //if user geuss was wrong
                 else {
                     //print the loosing statement
-                    console.log(chalk.rgb(9, 202, 255)(`Sorry! you have lost 5 points.\nThe correct number is ${Num}.`));
+                    console.log(chalk.rgb(9, 202, 255)(`\nSorry! you have lost 5 points.`));
+                    console.log(chalk.rgb(231, 252, 78).bold(`\nThe correct number is ${Num}.`));
 
                     totalscore -= 5;
 
                     // total score 
-                    console.log(chalk.rgb(250, 108, 222)(`Your total score: ${totalscore}`));
+                    console.log(chalk.rgb(250, 108, 222)(`\nYour total score: ${totalscore}`));
 
                     //if score less then 0, you are out
                     if (totalscore < 0){
-                        console.log(chalk.rgb(250, 108, 222)('Your score is less then 0. You have lost the game.'))
+                        console.log(chalk.rgb(250, 108, 222)('\nYour score is less then 0. You have lost the game.'))
                         levelCondition = false;
                     }
     
@@ -235,16 +245,16 @@ while (condition) {
             }
     
         }
-
-        let isContinue = await inquirer.prompt(
-            {
-                name: 'inOrOut', type: 'confirm', default: true,
-                message: chalk. rgb(248, 158, 221)('Do you want to continue or not(Exit)?')
-            },
-            
-        )
-        levelCondition = isContinue.inOrOut;
-
+        if (levelCondition){
+            let isContinue = await inquirer.prompt(
+                {
+                    name: 'inOrOut', type: 'confirm', default: true,
+                    message: chalk. rgb(248, 158, 221)('\nDo you want to continue or not(go to main menu)?')
+                },
+                
+            )
+            levelCondition = isContinue.inOrOut;
+    }
     
        }
     }
@@ -286,9 +296,7 @@ while (condition) {
                 }
 
             }
-        ])
-
-        levelCondition = guess.inOrOut;
+        ]);
 
         if (levelCondition) {
             // check the answer of user is correct? 
@@ -298,13 +306,15 @@ while (condition) {
                 let score = 10; 
     
                 // print the winning statement
-                console.log(chalk.rgb(229, 107, 240)(`Congratulation! your number is matched.\n round ${i} clear.`));
-    
+                console.log(chalk. rgb(243, 136, 136)(`\nCongratulation! your number is matched.`));
+                console.log(chalk.rgb(231, 252, 78).bold(`\n round ${i} clear.`));
+
                 //add in total score
                 totalscore += score;
     
                 // print the score and total score
-                console.log(chalk.rgb(129, 249, 171)(`Current score: ${score}\nTotal score ${totalscore}`));
+                console.log(chalk. rgb(245, 195, 121)(`\ncurrent score: ${score}`));
+                console.log(chalk. rgb(199, 129, 246)(`\nTotal score: ${totalscore}`));
             }
             
             // if user loose the game
@@ -316,28 +326,31 @@ while (condition) {
                     let scorE = 2;
                     
                     // print the statement that user is close enough
-                    console.log(chalk.rgb(129, 249, 171)(`You were close enough.\nThe correct number was ${Num}`));
+                    console.log(chalk.rgb(103, 255, 184)(`\nYou were close enough.`));
+                    console.log(chalk.rgb(231, 252, 78).bold(`\nThe correct number is ${Num}.`));
     
                     //add in total score
                     totalscore += scorE;
                     
                     //print the score and total score
-                    console.log(chalk.rgb(255, 180, 134)(`current score: ${scorE}\nTotal score: ${totalscore}`));
+                    console.log(chalk. rgb(245, 195, 121)(`\ncurrent score: ${scorE}`));
+                    console.log(chalk. rgb(199, 129, 246)(`\nTotal score: ${totalscore}`));
                 }
     
                 //if user geuss was wrong
                 else {
                     //print the loosing statement
-                    console.log(chalk.rgb(238, 192, 163)(`Sorry! you have lost 5 points.\nThe correct number is ${Num}.`));
-    
+                    console.log(chalk.rgb(9, 202, 255)(`\nSorry! you have lost 5 points.`));
+                    console.log(chalk.rgb(231, 252, 78).bold(`\nThe correct number is ${Num}.`));
+
                     totalscore -= 5;
 
                     // total score 
-                    console.log(chalk.rgb(252, 137, 66)(`Your total score: ${totalscore}`));
+                    console.log(chalk.rgb(252, 137, 66)(`\nYour total score: ${totalscore}`));
 
                     //if score less then 0 , game out
                     if (totalscore < 0){
-                        console.log(chalk.rgb(207, 244, 142)('Your score is less then 0. You have lost the game.'))
+                        console.log(chalk.rgb(207, 244, 142)('\nYour score is less then 0. You have lost the game.'))
                         levelCondition = false;
                     }
 
@@ -346,15 +359,16 @@ while (condition) {
             }
     
         }
+        if (levelCondition){
         let isContinue = await inquirer.prompt(
             {
                 name: 'inOrOut', type: 'confirm', default: true,
-                message: chalk. rgb(248, 158, 221)('Do you want to continue or not(Exit)?')
+                message: chalk. rgb(248, 158, 221)('\nDo you want to continue or not(go to main menu)?')
             },
             
         )
         levelCondition = isContinue.inOrOut;
-
+}
     
     }
     }
