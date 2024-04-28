@@ -24,7 +24,3 @@ const characters = words.join("");
 console.log(chalk.rgb(200, 230, 90)(characters));
 //count and print the number of characters in console
 console.log(chalk.rgb(0, 255, 190)(`There are ${characters.length} characters in this paragraph.`));
-// store all spaces in a variable
-const spaces = paragraph.para.split("").filter(space => space);
-// print spaces
-console.log(spaces);
