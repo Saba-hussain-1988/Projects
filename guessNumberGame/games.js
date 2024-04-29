@@ -31,29 +31,30 @@ while (condition) {
         let totalscore = 0;
         for (let i = 1; levelCondition; i++) {
             //print the round's num
-            console.log(chalk.rgb(86, 235, 248)(`\n\n\t\tRound ${i}\n\n`));
+            console.log(chalk.rgb(252, 5, 252)(`\n\n\t\tRound ${i}\n\n`));
             //generate the rendom number in between 0 to 3
             randomNum = Math.random() * 3;
             let Num = Math.round(randomNum);
             //take input from user
             let guess = await inquirer.prompt([
                 {
-                    name: 'num', type: 'number',
+                    name: 'num', type: 'input',
                     message: chalk.rgb(1, 253, 5)("Put your number(0 to 3)"),
                     //check the input is a number, not less thn 0 and greater thn 3 
                     validate: function (num) {
-                        let isValid = !isNaN(num) && (num >= 0 && num <= 3);
+                        let num1 = parseInt(num);
+                        let isValid = (num1 >= 0 && num1 <= 3);
                         return isValid || chalk.rgb(232, 1, 253)('Please enter a valid number.');
                     }
                 }
             ]);
             if (levelCondition) {
                 // check the answer of user is correct? 
-                if (guess.num === Num) {
+                if (Number(guess.num) === Num) {
                     //score of user
                     let score = 10;
                     // print the winning statement
-                    console.log(chalk.rgb(243, 136, 136)(`\nCongratulation! your number is matched.`));
+                    console.log(chalk.rgb(5, 141, 252)(`\nCongratulation! your number is matched.`));
                     console.log(chalk.rgb(231, 252, 78).bold(`\n round ${i} clear.`));
                     //add in total score
                     totalscore += score;
@@ -64,7 +65,7 @@ while (condition) {
                 // if user loose the game
                 else {
                     //check the user ans is close
-                    if (guess.num === Num + 1 || guess.num === Num - 1) {
+                    if (Number(guess.num) === Num + 1 || Number(guess.num) === Num - 1) {
                         //score
                         let scorE = 2;
                         // print the statement that user is close enough
@@ -109,25 +110,26 @@ while (condition) {
         let totalscore = 0;
         for (let i = 1; levelCondition; i++) {
             //print the round's num
-            console.log(chalk.rgb(247, 156, 136)(`\n\n\t\tRound ${i}\n\n`));
+            console.log(chalk.rgb(252, 5, 252)(`\n\n\t\tRound ${i}\n\n`));
             //generate the rendom number in between 0 to 5
             randomNum = Math.random() * 5;
             let Num = Math.round(randomNum);
             //take input from user
             let guess = await inquirer.prompt([
                 {
-                    name: 'num', type: 'number',
+                    name: 'num', type: 'input',
                     message: chalk.rgb(173, 246, 3)("Put your number(0 to 5)"),
                     //check the input is a number, not less thn 0 and greater thn 5
                     validate: function (num) {
-                        let isValid = !isNaN(num) && (num >= 0 && num <= 5);
+                        let num1 = parseInt(num);
+                        let isValid = (num1 >= 0 && num1 <= 5);
                         return isValid || chalk.rgb(175, 15, 244)('Please enter a valid number.');
                     }
                 }
             ]);
             if (levelCondition) {
                 // check the answer of user is correct? 
-                if (guess.num === Num) {
+                if (Number(guess.num) === Num) {
                     //score of user
                     let score = 10;
                     // print the winning statement
@@ -142,7 +144,7 @@ while (condition) {
                 // if user loose the game
                 else {
                     //check the user ans is close
-                    if (guess.num === Num + 1 || guess.num === Num - 1) {
+                    if (Number(guess.num) === Num + 1 || Number(guess.num) === Num - 1) {
                         //score
                         let scorE = 2;
                         // print the statement that user is close enough
@@ -187,29 +189,30 @@ while (condition) {
         let totalscore = 0;
         for (let i = 1; levelCondition; i++) {
             //print the round's num
-            console.log(chalk.rgb(250, 108, 222)(`\n\n\t\tRound ${i}\n\n`));
+            console.log(chalk.rgb(252, 5, 252)(`\n\n\t\tRound ${i}\n\n`));
             //generate the rendom number in between 0 to 9
             randomNum = Math.random() * 9;
             let Num = Math.round(randomNum);
             //take input from user
             let guess = await inquirer.prompt([
                 {
-                    name: 'num', type: 'number',
+                    name: 'num', type: 'input',
                     message: chalk.rgb(253, 175, 138)("Put your number(0 to 9)"),
                     //check the input is a number, not less thn 0 and greater thn 9
                     validate: function (num) {
-                        let isValid = !isNaN(num) && (num >= 0 && num <= 9);
+                        let num1 = parseInt(num);
+                        let isValid = (num1 >= 0 && num1 <= 9);
                         return isValid || chalk.rgb(62, 253, 192)('Please enter a valid number.');
                     }
                 }
             ]);
             if (levelCondition) {
                 // check the answer of user is correct? 
-                if (guess.num === Num) {
+                if (Number(guess.num) === Num) {
                     //score of user
                     let score = 10;
                     // print the winning statement
-                    console.log(chalk.rgb(243, 136, 136)(`\nCongratulation! your number is matched.`));
+                    console.log(chalk.rgb(5, 141, 252)(`\nCongratulation! your number is matched.`));
                     console.log(chalk.rgb(231, 252, 78).bold(`\n round ${i} clear.`));
                     //add in total score
                     totalscore += score;
@@ -220,7 +223,7 @@ while (condition) {
                 // if user loose the game
                 else {
                     //check the user ans is close
-                    if (guess.num === Num + 1 || guess.num === Num - 1) {
+                    if (Number(guess.num) === Num + 1 || Number(guess.num) === Num - 1) {
                         //score
                         let scorE = 2;
                         // print the statement that user is close enough
