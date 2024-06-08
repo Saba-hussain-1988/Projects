@@ -68,7 +68,7 @@ function addNewStudent(array:INFO[], value:INFO){
 };
 
 
-///////// Student Management project/////////
+//!Student Management project/////////
 // welcome note.
 console.log(chalk.rgb(250, 200, 179).bold('-'.repeat(60)));
 console.log(chalk.rgb(0, 250, 255).bold.italic('\t\t\tWELCOME'));
@@ -92,7 +92,7 @@ while(condition){
         },
     ]);
 
-    /////////// AddStudent /////////////
+    //!AddStudent /////////////
     
     if (main.mainMenu === 'AddStudent'){
 
@@ -170,7 +170,7 @@ while(condition){
         console.log(chalk.yellowBright('_'.repeat(60)));
     }
 
-    //////////// Enroll Student ////////////
+    //!Enroll Student ////////////
 
     else if(main.mainMenu === 'EnrollStudent'){
         let enroll = await inquirer.prompt({
@@ -209,7 +209,7 @@ while(condition){
         }
     }
     
-    //////////// show status //////////////
+    //! show status //////////////
 
     else if(main.mainMenu === 'ShowStatus'){      
         let status = await inquirer.prompt({
@@ -245,7 +245,7 @@ while(condition){
         console.log(chalk.yellowBright('_'.repeat(60)));
     }
 
-     ////////////////// remove Student /////////////////
+     //!remove Student /////////////////
 
     else if(main.mainMenu === 'RemoveStudent'){
         let remove = await inquirer.prompt({
@@ -282,7 +282,7 @@ while(condition){
 
     }
 
-    //////////// exit ///////////
+    //! exit ///////////
      else if (main.mainMenu === 'Exit'){
         condition = false;
     }
