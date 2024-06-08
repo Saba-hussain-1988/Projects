@@ -6,7 +6,8 @@ import chalk from "chalk";
 //todo )>>>>>>>> OOP Class Students Objects <<<<<<<<
 
 class StudentObj {
-    studentIDnumber: string;
+    static num = 1;
+    studentIDnumber: string | number;
     fullName: string;
     age: number;
     gender: string;
@@ -27,7 +28,7 @@ class StudentObj {
     ){
         // initialization
 
-        this.studentIDnumber = this.GenerateIDcode()
+        this.studentIDnumber = this.GenerateIDcode(StudentObj.num++)
         this.fullName = fullName.toUpperCase()
         this.age = age
         this.gender = gender
@@ -73,10 +74,10 @@ class StudentObj {
     }
 
     //! ______Create method to generate five digit ID number
-
-    GenerateIDcode():string{
-        let num = 1;
-        let value = num++
+    
+    GenerateIDcode(num:number):string{
+        
+        let value = num
         let ID : string = ``;
         if (value < 10){
             ID = `0000${value}`;
@@ -290,6 +291,9 @@ while(condition){
         },
     ]);
 
+    let index: any;
+    let remove : any;
+
     //! _________ AddStudent __________
     switch (main.mainMenu){
         case 'AddStudent':
@@ -481,13 +485,17 @@ while(condition){
             );
 
             //? calling the child class Method to remove student
-            let [index, remove] = newStudent.remove_student(removed.find);
+            [index, remove] = newStudent.remove_student(removed.find);
             break;
 
         case "Undo":
-            
-            //?calling the child class Method to re-include the last removed student
-            newStudent.undo(index, remove);
+             // Ensure index and remove are defined
+            if (typeof index == 'number' && typeof remove !== 'undefined') {
+                // Call the child class method to re-include the last removed student
+                newStudent.undo(index, remove);
+            } else {
+                console.log("No student to undo removal for.");
+            }
             break;
 
         case 'Exit':
