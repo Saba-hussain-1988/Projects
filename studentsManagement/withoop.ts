@@ -7,7 +7,7 @@ import chalk from "chalk";
 
 class StudentObj {
     static num = 1;
-    studentIDnumber: string | number;
+    studentIDnumber: string;
     fullName: string;
     age: number;
     gender: string;
@@ -48,7 +48,9 @@ class StudentObj {
     //! _______create method to view current balance
 
     ViewBalance(){
-        console.log(`${chalk.cyanBright.bold(this.fullName)}'s current balance is ${chalk.cyanBright.bold(this.advanceBalance)}PKR only.`)
+        console.log(chalk.bold.cyanBright('~').repeat(60))
+        console.log(`${chalk.cyanBright.bold(this.fullName)}'s current balance is ${chalk.cyanBright.bold(this.advanceBalance)} PKR only.`)
+        console.log(chalk.bold.cyanBright('~').repeat(60))
     }
     
     //!_______create method to pay tuition fee
@@ -57,12 +59,15 @@ class StudentObj {
         
         this.advanceBalance -= fee 
         this.isFeePaid = true
+        console.log(chalk.bold.cyanBright('~').repeat(60))
         console.log(`${chalk.cyanBright.bold(this.fullName)} paid successfully ${chalk.cyanBright.bold(fee)} PKR for tuition fees.`)
         console.log (`The remaining balance is ${chalk.cyanBright.bold(this.advanceBalance)} PKR.`)
+        console.log(chalk.bold.cyanBright('~').repeat(60))
     }
 
     //! _______create method to show status
     ShowStatus(){
+        console.log(chalk.bold.cyanBright('~').repeat(60))
         console.log(`Student ID: ${chalk.cyanBright.bold(this.studentIDnumber)}`)
         console.log(`Name: ${chalk.cyanBright.bold(this.fullName)}`)
         console.log(`Age: ${chalk.cyanBright.bold(this.age)}`)
@@ -71,6 +76,7 @@ class StudentObj {
         console.log(`Course: ${chalk.cyanBright.bold(this.courses)}`)
         console.log(`Is Fee Paid: ${chalk.cyanBright.bold(this.isFeePaid)}`)
         console.log(`Class Day & Time: ${chalk.cyanBright.bold(this.classDay_Time)}`)
+        console.log(chalk.bold.cyanBright('~').repeat(60))
     }
 
     //! ______Create method to generate five digit ID number
@@ -129,13 +135,17 @@ class StudentsArray {
         //*print confirmation message to the student
         switch (std.gender){
             case "Female":
+                console.log(chalk.bold.cyanBright('~').repeat(60))
                 console.log(`Miss ${chalk.cyanBright.bold(std.fullName)}! You have successfully add in session 2024.`)
                 console.log(`Your student ID code is: ${chalk.cyanBright.bold(std.studentIDnumber)}.`)
+                console.log(chalk.bold.cyanBright('~').repeat(60))
                 break;
 
             case "Male":
+                console.log(chalk.bold.cyanBright('~').repeat(60))
                 console.log(`Mr ${chalk.cyanBright.bold(std.fullName)}! You have successfully add in session 2024.`)
                 console.log(`Your student ID code is: ${chalk.cyanBright.bold(std.studentIDnumber)}.`)
+                console.log(chalk.bold.cyanBright('~').repeat(60))
                 break;
 
         }
@@ -150,9 +160,11 @@ class StudentsArray {
         if (stdFound){
             //* call the super class's method
             stdFound.EnrollStudent(course);
+            console.log(chalk.bold.cyanBright('~').repeat(60))
             console.log(`${chalk.cyanBright.bold(stdFound.fullName)}! you have successfully enrolled in ${chalk.cyanBright.bold(course)}.`);
+            console.log(chalk.bold.cyanBright('~').repeat(60))
         } else {
-            console.log('Incorrect student ID. Please put in correct student ID');
+            console.log(chalk.redBright('\nIncorrect student ID. Please put in correct student ID.\n'));
         }
     }
 
@@ -165,9 +177,11 @@ class StudentsArray {
         if (stdFound){
             //* call the super class's method
             stdFound.classDayTime(day, time);
+            console.log(chalk.bold.cyanBright('~').repeat(60))
             console.log(`${chalk.cyanBright.bold(stdFound.fullName)}! you have successfully add in class of ${chalk.cyanBright.bold(stdFound.classDay_Time)}.`);
+            console.log(chalk.bold.cyanBright('~').repeat(60))
         } else {
-            console.log('Incorrect student ID. Please put in correct student ID');
+            console.log(chalk.redBright('\nIncorrect student ID. Please put in correct student ID.\n'));
         }
     }
 
@@ -181,7 +195,7 @@ class StudentsArray {
             //* call the super class's method to view balance
             stdFound.ViewBalance();
         } else {
-            console.log('Incorrect student ID. Please put in correct student ID');
+            console.log(chalk.redBright('\nIncorrect student ID. Please put in correct student ID.\n'));
         };
 
     };
@@ -196,7 +210,7 @@ class StudentsArray {
             //* call the super class's method to pay fees
             stdFound.PayFees(amount);
         } else {
-            console.log('Incorrect student ID. Please put in correct student ID');
+            console.log(chalk.redBright('\nIncorrect student ID. Please put in correct student ID.\n'));
         };
     };
 
@@ -210,7 +224,7 @@ class StudentsArray {
             //* call the super class's method to show student's status;'
             stdFound.ShowStatus();
         } else {
-            console.log('Incorrect student ID. Please put in correct student ID');
+            console.log(chalk.redBright('\nIncorrect student ID. Please put in correct student ID.\n'));
         };
     };
 
@@ -219,26 +233,28 @@ class StudentsArray {
 
         //* created these two variables here so that we can return and use them in an undo method.
          let index = -1;
-         let removed = {}
+         let removed:StudentObj;
 
         //* find the student by calling the method
         let stdFound = this.find_student(IDcode);
 
         if(stdFound){
+            removed = stdFound;
+
            //* now find the index of that student
            index = this.students2024.indexOf(stdFound);
 
            //* remove a student by using splice method
-           removed = this.students2024.splice(index, 1);
+           this.students2024.splice(index, 1);
 
         } else {
-            console.log('Incorrect student ID. Please put in correct student ID');
+            console.log(chalk.redBright('\nIncorrect student ID. Please put in correct student ID.\n'));
         };
-        return [index, removed] ;        
+                return [index, removed] ; 
     };
 
     //! ______write a method to undo removed student
-    undo(index:number, removed:StudentObj){
+    undo(index:number , removed:StudentObj){
         //* to re-include last element which was deleted
         this.students2024.splice(index, 0, removed);
        
@@ -262,6 +278,9 @@ console.log(chalk.rgb(0, 250, 255).bold('\t\t\t\tBy S.R.Chohan'));
 console.log(chalk.rgb(250, 200, 179).bold('_'.repeat(60)));
 
 
+//calling the child class
+let newStudent = new StudentsArray();
+
 //* create a boolean variable for working while loop
 let condition: boolean = true;
 
@@ -269,8 +288,6 @@ let condition: boolean = true;
 //*  while loop to run project
 while(condition){
 
-    //calling the child class
-    let newStudent = new StudentsArray();
     
     //* take input from user
     let main = await inquirer.prompt([
@@ -290,9 +307,11 @@ while(condition){
             ]
         },
     ]);
+  
 
-    let index: any;
-    let remove : any;
+    //* these variables are used in "undo function"""
+    let index: number;
+    let remove : StudentObj;
 
     //! _________ AddStudent __________
     switch (main.mainMenu){
@@ -333,14 +352,12 @@ while(condition){
 
         //? calling the child class Method to add new student
         newStudent.add_student(enroll.fullName, enroll.age, enroll.gender, enroll.balance);
+
         break;
         
 
         case 'EnrollStudent':
-            if(newStudent.students2024.length === 0){
-                console.log('First you have to add some students.');
-            } else {
-                
+            
                 // to take input from user
                 let enrolled = await inquirer.prompt([ 
                     {
@@ -360,14 +377,10 @@ while(condition){
             
                 //? calling the child class method to enroll student to the selected  course
                 newStudent.enroll_student(enrolled.find, enrolled.course);
-            }
+            
             break;
 
         case "Current Balance":
-
-            if(newStudent.students2024.length === 0){
-                console.log('First you have to add some students.');
-            } else {
 
                 //to take input from user
                 let find = await inquirer.prompt(
@@ -383,14 +396,11 @@ while(condition){
 
                 //? calling the child class Method to show student's balance
                 newStudent.show_current_balance(find.find);
-            }
+            
             break;
 
         case  "select slot":
-            if(newStudent.students2024.length === 0){
-                console.log('First you have to add some students.');
-            } else {
-            
+          
                 // to take input from user
                 let slot = await inquirer.prompt([ 
                     {
@@ -413,14 +423,11 @@ while(condition){
 
                 //? calling the child class Method to add in slot
                 newStudent.select_slot(slot.find, slot.day, slot.time);
-            }
+            
             break;
 
         case "Pay Fees":
-            if(newStudent.students2024.length === 0){
-                console.log('First you have to add some students.');
-            } else {
-            
+  
                 // to take input from user
                 let pay = await inquirer.prompt([ 
                     {
@@ -446,13 +453,10 @@ while(condition){
 
                 //?calling the child class Method to pay student fee
                 newStudent.fees_pay(pay.find, fees);
-            }
+            
            break;
 
         case 'ShowStatus':
-            if(newStudent.students2024.length === 0){
-                console.log('First you have to add some students.');
-            } else {
 
                 //to take input from user
                 let status = await inquirer.prompt(
@@ -468,7 +472,7 @@ while(condition){
 
                 //? calling the child class Method to show student's status
                 newStudent.show_status(status.find);
-            }
+            
             break;
 
         case 'RemoveStudent':
@@ -486,16 +490,20 @@ while(condition){
 
             //? calling the child class Method to remove student
             [index, remove] = newStudent.remove_student(removed.find);
+            //* print statement
+            console.log(`Operation is successful:\n ${remove.fullName}, ID code:${remove.studentIDnumber} is leaved.`)
+
             break;
 
         case "Undo":
              // Ensure index and remove are defined
-            if (typeof index == 'number' && typeof remove !== 'undefined') {
+            if (typeof index !== 'undefined' && typeof remove !== 'undefined') {
                 // Call the child class method to re-include the last removed student
                 newStudent.undo(index, remove);
             } else {
-                console.log("No student to undo removal for.");
+                console.log(chalk.yellowBright("\nNo student to undo removal for.\n"));
             }
+            
             break;
 
         case 'Exit':
