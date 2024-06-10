@@ -78,7 +78,13 @@ console.log(chalk.rgb(250, 200, 179).bold('_'.repeat(60)));
 
 // create a boolean variable for working while loop
 let condition: boolean = true;
+
+//to generate id code
 let IDvalue = 0;
+
+//for undo , take values from remove student
+let index = -1;
+let removed:any;
 
 //while loop to run project
 while(condition){
@@ -88,7 +94,7 @@ while(condition){
         {
             name: 'mainMenu', type: 'list',
             message: 'select operation which you wanna to do:',
-            choices: ['AddStudent', 'EnrollStudent', 'ShowStatus', 'RemoveStudent', 'Exit']
+            choices: ['AddStudent', 'EnrollStudent', 'ShowStatus', 'RemoveStudent', 'Undo', 'Exit']
         },
     ]);
 
@@ -260,14 +266,14 @@ while(condition){
         });
 
         let isInclude: boolean = true;
-        let index = -1;
+        
         for(let i = 0; i < students_2024.length; i++){
             isInclude = false;
             if(  remove.hit === students_2024[i].IDnumber){
                 index = i;
                 isInclude = true;
        
-                let removed = students_2024.splice(index, 1);
+                removed = students_2024.splice(index, 1);
          
                 console.log('you successfully removed:\n', removed);
         
@@ -280,6 +286,10 @@ while(condition){
         }
         console.log(chalk.yellowBright('_'.repeat(60)));
 
+    }
+
+    else if (main.mainMenu === 'Undo'){
+        students_2024.splice(index, 0, removed);
     }
 
     //! exit ///////////

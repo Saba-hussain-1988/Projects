@@ -133,7 +133,9 @@ class StudentsArray {
         if (stdFound) {
             //* call the super class's method
             stdFound.classDayTime(day, time);
+            console.log(chalk.bold.cyanBright('~').repeat(60));
             console.log(`${chalk.cyanBright.bold(stdFound.fullName)}! you have successfully add in class of ${chalk.cyanBright.bold(stdFound.classDay_Time)}.`);
+            console.log(chalk.bold.cyanBright('~').repeat(60));
         }
         else {
             console.log(chalk.redBright('\nIncorrect student ID. Please put in correct student ID.\n'));
@@ -185,14 +187,15 @@ class StudentsArray {
     remove_student(IDcode) {
         //* created these two variables here so that we can return and use them in an undo method.
         let index = -1;
-        let removed = {};
+        let removed;
         //* find the student by calling the method
         let stdFound = this.find_student(IDcode);
         if (stdFound) {
+            removed = stdFound;
             //* now find the index of that student
             index = this.students2024.indexOf(stdFound);
             //* remove a student by using splice method
-            removed = this.students2024.splice(index, 1);
+            this.students2024.splice(index, 1);
         }
         else {
             console.log(chalk.redBright('\nIncorrect student ID. Please put in correct student ID.\n'));

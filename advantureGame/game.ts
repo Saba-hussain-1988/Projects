@@ -34,3 +34,18 @@ console.log(chalk.rgb(0, 250, 255).bold.italic('\t\t\tWELCOME'));
 console.log(chalk.rgb(0, 250, 255).bold.italic('\tto Advanture Game'));
 console.log(chalk.rgb(0, 250, 255).bold('\t\t\t\tBy S.R.Chohan'));
 console.log(chalk.rgb(250, 200, 179).bold('_'.repeat(60)));
+
+let player = await inquirer.prompt({
+    name: "name",
+    type: 'input',
+    message: "Enter player name:"
+});
+
+let enemy = await inquirer.prompt({
+    name: "name",
+    type: "list",
+    message: "select your enemy:",
+    choices: ['Zombie', 'Dragon', 'Skeleton', 'Evil', ]
+});
+
+let 
