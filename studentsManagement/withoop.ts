@@ -16,7 +16,7 @@ class StudentObj {
     courses: string[];
     classDay_Time!: string;
 
-  
+
 
     constructor(
         //parameters
@@ -25,7 +25,7 @@ class StudentObj {
         age: number,
         gender: string,
         advanceBalance: number
-    ){
+    ) {
         // initialization
 
         this.studentIDnumber = this.GenerateIDcode(StudentObj.num++)
@@ -38,35 +38,35 @@ class StudentObj {
         this.classDay_Time = ''
 
     }
-   
+
     //! _______Create Method to  enroll 
 
-    EnrollStudent(course: string){
-       this.courses.push(course);
+    EnrollStudent(course: string) {
+        this.courses.push(course);
     }
 
     //! _______create method to view current balance
 
-    ViewBalance(){
+    ViewBalance() {
         console.log(chalk.bold.cyanBright('~').repeat(60))
         console.log(`${chalk.cyanBright.bold(this.fullName)}'s current balance is ${chalk.cyanBright.bold(this.advanceBalance)} PKR only.`)
         console.log(chalk.bold.cyanBright('~').repeat(60))
     }
-    
+
     //!_______create method to pay tuition fee
 
-    PayFees(fee: number){
-        
-        this.advanceBalance -= fee 
+    PayFees(fee: number) {
+
+        this.advanceBalance -= fee
         this.isFeePaid = true
         console.log(chalk.bold.cyanBright('~').repeat(60))
         console.log(`${chalk.cyanBright.bold(this.fullName)} paid successfully ${chalk.cyanBright.bold(fee)} PKR for tuition fees.`)
-        console.log (`The remaining balance is ${chalk.cyanBright.bold(this.advanceBalance)} PKR.`)
+        console.log(`The remaining balance is ${chalk.cyanBright.bold(this.advanceBalance)} PKR.`)
         console.log(chalk.bold.cyanBright('~').repeat(60))
     }
 
     //! _______create method to show status
-    ShowStatus(){
+    ShowStatus() {
         console.log(chalk.bold.cyanBright('~').repeat(60))
         console.log(`Student ID: ${chalk.cyanBright.bold(this.studentIDnumber)}`)
         console.log(`Name: ${chalk.cyanBright.bold(this.fullName)}`)
@@ -80,30 +80,30 @@ class StudentObj {
     }
 
     //! ______Create method to generate five digit ID number
-    
-    GenerateIDcode(num:number):string{
-        
+
+    GenerateIDcode(num: number): string {
+
         let value = num
-        let ID : string = ``;
-        if (value < 10){
+        let ID: string = ``;
+        if (value < 10) {
             ID = `0000${value}`;
-        } else if (value < 100){
+        } else if (value < 100) {
             ID = `000${value}`;
-        } else if (value < 1000){
+        } else if (value < 1000) {
             ID = `00${value}`;
-        } else if(value < 10000){
+        } else if (value < 10000) {
             ID = `0${value}`;
         }
-            return ID;
-           
+        return ID;
+
     };
 
 
     //! _______ method to concatenate of class day and time
 
-    classDayTime(day:string, time:string){
-         
-        this.classDay_Time = day + '_' + time ;
+    classDayTime(day: string, time: string) {
+
+        this.classDay_Time = day + '_' + time;
     };
 
 
@@ -113,9 +113,9 @@ class StudentObj {
 //* use inheritance
 
 class StudentsArray {
-    students2024 : StudentObj[];
+    students2024: StudentObj[];
 
-    constructor(){
+    constructor() {
         this.students2024 = [];
     }
 
@@ -125,7 +125,7 @@ class StudentsArray {
         age: number,
         gender: string,
         advanceBalance: number
-    ){
+    ) {
         //*call super class to create an object of an student
         let std = new StudentObj(fullName, age, gender, advanceBalance);
 
@@ -133,7 +133,7 @@ class StudentsArray {
         this.students2024.push(std);
 
         //*print confirmation message to the student
-        switch (std.gender){
+        switch (std.gender) {
             case "Female":
                 console.log(chalk.bold.cyanBright('~').repeat(60))
                 console.log(`Miss ${chalk.cyanBright.bold(std.fullName)}! You have successfully add in session 2024.`)
@@ -152,12 +152,12 @@ class StudentsArray {
     }
 
     //! ______write a method to enroll student in a course
-    enroll_student(IDcode: string, course: string){
-        
+    enroll_student(IDcode: string, course: string) {
+
         //* find the student by calling the method
         let stdFound = this.find_student(IDcode);
 
-        if (stdFound){
+        if (stdFound) {
             //* call the super class's method
             stdFound.EnrollStudent(course);
             console.log(chalk.bold.cyanBright('~').repeat(60))
@@ -169,12 +169,12 @@ class StudentsArray {
     }
 
     //! ______write a method to select class slot
-    select_slot(IDcode:string, day:string, time:string){
+    select_slot(IDcode: string, day: string, time: string) {
 
         //* find the student by calling the method
         let stdFound = this.find_student(IDcode);
 
-        if (stdFound){
+        if (stdFound) {
             //* call the super class's method
             stdFound.classDayTime(day, time);
             console.log(chalk.bold.cyanBright('~').repeat(60))
@@ -186,12 +186,12 @@ class StudentsArray {
     }
 
     //! ______write a Method to show current balance
-    show_current_balance(IDcode: string){
+    show_current_balance(IDcode: string) {
 
         //* find the student by calling the method
         let stdFound = this.find_student(IDcode);
 
-        if(stdFound){
+        if (stdFound) {
             //* call the super class's method to view balance
             stdFound.ViewBalance();
         } else {
@@ -201,12 +201,12 @@ class StudentsArray {
     };
 
     //! ______write a method to pay fee of a student
-    fees_pay(IDcode:string, amount: number){
-        
+    fees_pay(IDcode: string, amount: number) {
+
         //* find the student by calling the method
         let stdFound = this.find_student(IDcode);
 
-        if(stdFound){
+        if (stdFound) {
             //* call the super class's method to pay fees
             stdFound.PayFees(amount);
         } else {
@@ -215,12 +215,12 @@ class StudentsArray {
     };
 
     //! _____write a method to show a student's status
-    show_status(IDcode:string){
-         
+    show_status(IDcode: string) {
+
         //* find the student by calling the method
         let stdFound = this.find_student(IDcode);
 
-        if(stdFound){
+        if (stdFound) {
             //* call the super class's method to show student's status;'
             stdFound.ShowStatus();
         } else {
@@ -229,40 +229,42 @@ class StudentsArray {
     };
 
     //! ______Write a method to remove a student
-    remove_student(IDcode: string){
+    remove_student(IDcode: string) {
 
         //* created these two variables here so that we can return and use them in an undo method.
-         let index = -1;
-         let removed:StudentObj;
+        let index = -1;
+        let removed: StudentObj | "" = "";
 
         //* find the student by calling the method
         let stdFound = this.find_student(IDcode);
 
-        if(stdFound){
+        if (stdFound) {
             removed = stdFound;
 
-           //* now find the index of that student
-           index = this.students2024.indexOf(stdFound);
+            //* now find the index of that student
+            index = this.students2024.indexOf(stdFound);
 
-           //* remove a student by using splice method
-           this.students2024.splice(index, 1);
+            //* remove a student by using splice method
+            this.students2024.splice(index, 1);
 
         } else {
             console.log(chalk.redBright('\nIncorrect student ID. Please put in correct student ID.\n'));
         };
-                return [index, removed] ; 
+        if (removed) {
+            return [index, removed];
+        }
     };
 
     //! ______write a method to undo removed student
-    undo(index:number , removed:StudentObj){
+    undo(index: number, removed: StudentObj) {
         //* to re-include last element which was deleted
         this.students2024.splice(index, 0, removed);
-       
+
     };
 
     //! ______write a Method to find a student by its ID code
-    find_student(IDcode:string){
-        return this.students2024.find(std =>std.studentIDnumber === IDcode);
+    find_student(IDcode: string) {
+        return this.students2024.find(std => std.studentIDnumber === IDcode);
     };
 
 }
@@ -286,9 +288,9 @@ let condition: boolean = true;
 
 
 //*  while loop to run project
-while(condition){
+while (condition) {
 
-    
+
     //* take input from user
     let main = await inquirer.prompt([
         {
@@ -307,180 +309,180 @@ while(condition){
             ]
         },
     ]);
-  
+
 
     //* these variables are used in "undo function"""
     let index: number;
-    let remove : StudentObj;
+    let remove: StudentObj;
 
     //! _________ AddStudent __________
-    switch (main.mainMenu){
+    switch (main.mainMenu) {
         case 'AddStudent':
-    
-        console.log(chalk.rgb(179, 230, 255)(`\nPlease fill this Enrollment form.\n`))
-        //take input from user
-        let enroll = await inquirer.prompt([
-            {
-                name: 'fullName', type: 'input',
-                message: 'Please enter your full name:',
-                validate: function (fullName){
-                    let isValid = fullName.length > 0  &&  isNaN(fullName);
-                    return isValid || 'Please enter your name:'
-                }
-            },
-            {
-                name: 'age', type: 'input', message: 'Enter your age:',
-                validate: function(age){
-                    age = Number(age);
-                    let isValid: boolean = age <= 70 && age >= 13;
-                    return isValid || "To enroll here the age limit is 13 to 70."
-                }
-            },
-            {
-                name: 'gender', type: "list", choices: ['Male', 'Female'], message: "select gender:"
-            },
-            {
-                name: 'balance', type: 'input',
-                message: 'Pay 50,000 PKR for advance balance:',
-                validate: function(balance){
-                    let intValue = parseInt(balance);
-                    let isValid = intValue === 50000 && !isNaN(intValue);
-                    return isValid || 'Please pay 50000 pkr, its required:';
-                }
-            },
-        ]);
 
-        //? calling the child class Method to add new student
-        newStudent.add_student(enroll.fullName, enroll.age, enroll.gender, enroll.balance);
+            console.log(chalk.rgb(179, 230, 255)(`\nPlease fill this Enrollment form.\n`))
+            //take input from user
+            let enroll = await inquirer.prompt([
+                {
+                    name: 'fullName', type: 'input',
+                    message: 'Please enter your full name:',
+                    validate: function (fullName) {
+                        let isValid = fullName.length > 0 && isNaN(fullName);
+                        return isValid || 'Please enter your name:'
+                    }
+                },
+                {
+                    name: 'age', type: 'input', message: 'Enter your age:',
+                    validate: function (age) {
+                        age = Number(age);
+                        let isValid: boolean = age <= 70 && age >= 13;
+                        return isValid || "To enroll here the age limit is 13 to 70."
+                    }
+                },
+                {
+                    name: 'gender', type: "list", choices: ['Male', 'Female'], message: "select gender:"
+                },
+                {
+                    name: 'balance', type: 'input',
+                    message: 'Pay 50,000 PKR for advance balance:',
+                    validate: function (balance) {
+                        let intValue = parseInt(balance);
+                        let isValid = intValue === 50000 && !isNaN(intValue);
+                        return isValid || 'Please pay 50000 pkr, its required:';
+                    }
+                },
+            ]);
 
-        break;
-        
+            //? calling the child class Method to add new student
+            newStudent.add_student(enroll.fullName, enroll.age, enroll.gender, enroll.balance);
+
+            break;
+
 
         case 'EnrollStudent':
-            
-                // to take input from user
-                let enrolled = await inquirer.prompt([ 
-                    {
-                        name:'find', type: 'input', message: "Please put student's five digit ID code.",
-                        validate: function(find){
-                            let num: number = parseInt(find);
-                            let isValid: boolean = find.length === 5 && !isNaN(num);
-                            return isValid || "please put five digit Id code";
-                        }
-                    },
-                    {
-                        name: 'course', type: 'list', message: 'select course which you want to enroll.',
-                        choices: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Python']
-                    }
-                ]);
 
-            
-                //? calling the child class method to enroll student to the selected  course
-                newStudent.enroll_student(enrolled.find, enrolled.course);
-            
+            // to take input from user
+            let enrolled = await inquirer.prompt([
+                {
+                    name: 'find', type: 'input', message: "Please put student's five digit ID code.",
+                    validate: function (find) {
+                        let num: number = parseInt(find);
+                        let isValid: boolean = find.length === 5 && !isNaN(num);
+                        return isValid || "please put five digit Id code";
+                    }
+                },
+                {
+                    name: 'course', type: 'list', message: 'select course which you want to enroll.',
+                    choices: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Python']
+                }
+            ]);
+
+
+            //? calling the child class method to enroll student to the selected  course
+            newStudent.enroll_student(enrolled.find, enrolled.course);
+
             break;
 
         case "Current Balance":
 
-                //to take input from user
-                let find = await inquirer.prompt(
-                    {
-                        name:'find', type: 'input', message: "Please put student's five digit ID code.",
-                        validate: function(find){
-                            let num: number = parseInt(find);
-                            let isValid: boolean = find.length === 5 && !isNaN(num);
-                            return isValid || "please put five digit Id code";
-                        }
+            //to take input from user
+            let find = await inquirer.prompt(
+                {
+                    name: 'find', type: 'input', message: "Please put student's five digit ID code.",
+                    validate: function (find) {
+                        let num: number = parseInt(find);
+                        let isValid: boolean = find.length === 5 && !isNaN(num);
+                        return isValid || "please put five digit Id code";
                     }
-                );
+                }
+            );
 
-                //? calling the child class Method to show student's balance
-                newStudent.show_current_balance(find.find);
-            
+            //? calling the child class Method to show student's balance
+            newStudent.show_current_balance(find.find);
+
             break;
 
-        case  "select slot":
-          
-                // to take input from user
-                let slot = await inquirer.prompt([ 
-                    {
-                        name:'find', type: 'input', message: "Please put student's five digit ID code.",
-                        validate: function(find){
-                            let num: number = parseInt(find);
-                            let isValid: boolean = find.length === 5 && !isNaN(num);
-                            return isValid || "please put five digit Id code";
-                        }
-                    },
-                    {
-                        name: 'day', type: 'list', message: 'select a day.',
-                        choices: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-                    },
-                    {
-                        name: 'time', type: 'list', message: 'select slot.',
-                        choices: ['9AM to 12PM', '5PM to 8PM']
-                    }
-                ]);
+        case "select slot":
 
-                //? calling the child class Method to add in slot
-                newStudent.select_slot(slot.find, slot.day, slot.time);
-            
+            // to take input from user
+            let slot = await inquirer.prompt([
+                {
+                    name: 'find', type: 'input', message: "Please put student's five digit ID code.",
+                    validate: function (find) {
+                        let num: number = parseInt(find);
+                        let isValid: boolean = find.length === 5 && !isNaN(num);
+                        return isValid || "please put five digit Id code";
+                    }
+                },
+                {
+                    name: 'day', type: 'list', message: 'select a day.',
+                    choices: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                },
+                {
+                    name: 'time', type: 'list', message: 'select slot.',
+                    choices: ['9AM to 12PM', '5PM to 8PM']
+                }
+            ]);
+
+            //? calling the child class Method to add in slot
+            newStudent.select_slot(slot.find, slot.day, slot.time);
+
             break;
 
         case "Pay Fees":
-  
-                // to take input from user
-                let pay = await inquirer.prompt([ 
-                    {
-                        name:'find', type: 'input', message: "Please put student's five digit ID code.",
-                        validate: function(find){
-                            let num: number = parseInt(find);
-                            let isValid: boolean = find.length === 5 && !isNaN(num);
-                            return isValid || "please put five digit Id code";
-                        }
-                    },
-                    {
-                        name: 'fee', type: 'input', message: 'Please pay 10000 pkr for tuition fees.',
-                        validate: function(fee){
-                            let num: number = parseInt(fee);
-                            let isValid: boolean = !isNaN(num) && num === 10000;
-                            return isValid || "please put five digit Id code";
-                        }
+
+            // to take input from user
+            let pay = await inquirer.prompt([
+                {
+                    name: 'find', type: 'input', message: "Please put student's five digit ID code.",
+                    validate: function (find) {
+                        let num: number = parseInt(find);
+                        let isValid: boolean = find.length === 5 && !isNaN(num);
+                        return isValid || "please put five digit Id code";
                     }
-                ]);
+                },
+                {
+                    name: 'fee', type: 'input', message: 'Please pay 10000 pkr for tuition fees.',
+                    validate: function (fee) {
+                        let num: number = parseInt(fee);
+                        let isValid: boolean = !isNaN(num) && num === 10000;
+                        return isValid || "please put five digit Id code";
+                    }
+                }
+            ]);
 
-                // before using the value convert it into a number
-                let fees = parseInt( pay.fee);
+            // before using the value convert it into a number
+            let fees = parseInt(pay.fee);
 
-                //?calling the child class Method to pay student fee
-                newStudent.fees_pay(pay.find, fees);
-            
-           break;
+            //?calling the child class Method to pay student fee
+            newStudent.fees_pay(pay.find, fees);
+
+            break;
 
         case 'ShowStatus':
 
-                //to take input from user
-                let status = await inquirer.prompt(
-                    {
-                        name:'find', type: 'input', message: "Please put student's five digit ID code.",
-                        validate: function(find){
-                            let num: number = parseInt(find);
-                            let isValid: boolean = find.length === 5 && !isNaN(num);
-                            return isValid || "please put five digit Id code";
-                        }
+            //to take input from user
+            let status = await inquirer.prompt(
+                {
+                    name: 'find', type: 'input', message: "Please put student's five digit ID code.",
+                    validate: function (find) {
+                        let num: number = parseInt(find);
+                        let isValid: boolean = find.length === 5 && !isNaN(num);
+                        return isValid || "please put five digit Id code";
                     }
-                );
+                }
+            );
 
-                //? calling the child class Method to show student's status
-                newStudent.show_status(status.find);
-            
+            //? calling the child class Method to show student's status
+            newStudent.show_status(status.find);
+
             break;
 
         case 'RemoveStudent':
             //to take input from user
             let removed = await inquirer.prompt(
                 {
-                    name:'find', type: 'input', message: "Please put student's five digit ID code.",
-                    validate: function(find){
+                    name: 'find', type: 'input', message: "Please put student's five digit ID code.",
+                    validate: function (find) {
                         let num: number = parseInt(find);
                         let isValid: boolean = find.length === 5 && !isNaN(num);
                         return isValid || "please put five digit Id code";
@@ -489,25 +491,25 @@ while(condition){
             );
 
             //? calling the child class Method to remove student
-            [index, remove] = newStudent.remove_student(removed.find);
+            let removedData = newStudent.remove_student(removed.find);
             //* print statement
-            console.log(`Operation is successful:\n ${remove.fullName}, ID code:${remove.studentIDnumber} is leaved.`)
+            // console.log(`Operation is successful:\n ${remove.fullName}, ID code:${remove.studentIDnumber} is leaved.`)
 
             break;
 
         case "Undo":
-             // Ensure index and remove are defined
+            // Ensure index and remove are defined
             if (typeof index !== 'undefined' && typeof remove !== 'undefined') {
                 // Call the child class method to re-include the last removed student
                 newStudent.undo(index, remove);
             } else {
                 console.log(chalk.yellowBright("\nNo student to undo removal for.\n"));
             }
-            
+
             break;
 
         case 'Exit':
-            condition  = false;
+            condition = false;
     };
 
 };
