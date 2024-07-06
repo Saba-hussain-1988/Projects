@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 //? ======= import statements ========
 import inquirer from "inquirer";
 import chalk from "chalk";

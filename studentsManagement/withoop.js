@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 //? ======= import statements ========
 import inquirer from "inquirer";
 import chalk from "chalk";
@@ -208,6 +209,11 @@ class StudentsArray {
     undo(removed) {
         //* to re-include last element (in the end of the list) which was deleted
         this.students2024.push(removed);
+        //* print statement
+        console.log(chalk.bold.cyanBright('~').repeat(60));
+        console.log(`Operation successful!\nName: ${chalk.bold.cyanBright(removed.fullName)}
+        Student ID: ${chalk.bold.cyanBright(removed.studentIDnumber)}, has re-added in session 2024`);
+        console.log(chalk.bold.cyanBright('~').repeat(60));
     }
     ;
     //! ______write a Method to find a student by its ID code
