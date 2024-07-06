@@ -186,7 +186,7 @@ class StudentsArray {
     //! ______Write a method to remove a student
     remove_student(IDcode) {
         //* created these two variables here so that we can return and use them in an undo method.
-        let index = -1;
+        let index;
         let removed;
         //* find the student by calling the method
         let stdFound = this.find_student(IDcode);
@@ -201,13 +201,13 @@ class StudentsArray {
             console.log(chalk.redBright('\nIncorrect student ID. Please put in correct student ID.\n'));
         }
         ;
-        return [index, removed];
+        return removed;
     }
     ;
     //! ______write a method to undo removed student
-    undo(index, removed) {
-        //* to re-include last element which was deleted
-        this.students2024.splice(index, 0, removed);
+    undo(removed) {
+        //* to re-include last element (in the end of the list) which was deleted
+        this.students2024.push(removed);
     }
     ;
     //! ______write a Method to find a student by its ID code
@@ -227,6 +227,7 @@ console.log(chalk.rgb(250, 200, 179).bold('_'.repeat(60)));
 let newStudent = new StudentsArray();
 //* create a boolean variable for working while loop
 let condition = true;
+let removed;
 //*  while loop to run project
 while (condition) {
     //* take input from user
@@ -383,7 +384,7 @@ while (condition) {
             break;
         case 'RemoveStudent':
             //to take input from user
-            let removed = await inquirer.prompt({
+            let remove = await inquirer.prompt({
                 name: 'find', type: 'input', message: "Please put student's five digit ID code.",
                 validate: function (find) {
                     let num = parseInt(find);
@@ -392,18 +393,26 @@ while (condition) {
                 }
             });
             //? calling the child class Method to remove student
-            [index, remove] = newStudent.remove_student(removed.find);
+            removed = newStudent.remove_student(remove.find);
             //* print statement
-            console.log(`Operation is successful:\n ${remove.fullName}, ID code:${remove.studentIDnumber} is leaved.`);
-            break;
-        case "Undo":
-            // Ensure index and remove are defined
-            if (typeof index !== 'undefined' && typeof remove !== 'undefined') {
-                // Call the child class method to re-include the last removed student
-                newStudent.undo(index, remove);
+            if (typeof removed === "undefined") {
+                //nothing to display
             }
             else {
+                console.log(chalk.bold.cyanBright('~').repeat(60));
+                console.log(`Operation is successful:\n ${chalk.bold.cyanBright(removed.fullName)},
+                 ID code:${chalk.bold.cyanBright(removed.studentIDnumber)}is removed.`);
+                console.log(chalk.bold.cyanBright('~').repeat(60));
+            }
+            break;
+        case "Undo":
+            // Ensure remove is defined
+            if (typeof removed === "undefined") {
                 console.log(chalk.yellowBright("\nNo student to undo removal for.\n"));
+            }
+            else {
+                // Call the child class method to re-include the last removed student
+                newStudent.undo(removed);
             }
             break;
         case 'Exit':

@@ -1,6 +1,7 @@
 //? ======= import statements ========
 import inquirer from "inquirer";
 import chalk from "chalk";
+import { type } from "os";
 
 
 //todo )>>>>>>>> OOP Class Students Objects <<<<<<<<
@@ -142,10 +143,10 @@ class StudentsArray {
                 break;
 
             case "Male":
-                console.log(chalk.bold.cyanBright('~').repeat(60))
+                console.log(chalk.bold.cyanBright('~').repeat(60));
                 console.log(`Mr ${chalk.cyanBright.bold(std.fullName)}! You have successfully add in session 2024.`)
-                console.log(`Your student ID code is: ${chalk.cyanBright.bold(std.studentIDnumber)}.`)
-                console.log(chalk.bold.cyanBright('~').repeat(60))
+                console.log(`Your student ID code is: ${chalk.cyanBright.bold(std.studentIDnumber)}.`);
+                console.log(chalk.bold.cyanBright('~').repeat(60));
                 break;
 
         }
@@ -177,9 +178,9 @@ class StudentsArray {
         if (stdFound) {
             //* call the super class's method
             stdFound.classDayTime(day, time);
-            console.log(chalk.bold.cyanBright('~').repeat(60))
+            console.log(chalk.bold.cyanBright('~').repeat(60));
             console.log(`${chalk.cyanBright.bold(stdFound.fullName)}! you have successfully add in class of ${chalk.cyanBright.bold(stdFound.classDay_Time)}.`);
-            console.log(chalk.bold.cyanBright('~').repeat(60))
+            console.log(chalk.bold.cyanBright('~').repeat(60));
         } else {
             console.log(chalk.redBright('\nIncorrect student ID. Please put in correct student ID.\n'));
         }
@@ -229,11 +230,12 @@ class StudentsArray {
     };
 
     //! ______Write a method to remove a student
-    remove_student(IDcode: string) {
+    remove_student(IDcode: string):StudentObj | undefined {
 
+         
         //* created these two variables here so that we can return and use them in an undo method.
-        let index = -1;
-        let removed: StudentObj | "" = "";
+        let index : number | undefined;
+        let removed:StudentObj |undefined ;
 
         //* find the student by calling the method
         let stdFound = this.find_student(IDcode);
@@ -250,16 +252,21 @@ class StudentsArray {
         } else {
             console.log(chalk.redBright('\nIncorrect student ID. Please put in correct student ID.\n'));
         };
-        if (removed) {
-            return [index, removed];
-        }
+       
+        return  removed;
+        
     };
 
     //! ______write a method to undo removed student
-    undo(index: number, removed: StudentObj) {
-        //* to re-include last element which was deleted
-        this.students2024.splice(index, 0, removed);
 
+    undo( removed: StudentObj) {
+        //* to re-include last element (in the end of the list) which was deleted
+        this.students2024.push( removed);
+        //* print statement
+        console.log(chalk.bold.cyanBright('~').repeat(60));
+        console.log(`Operation successful!\nName: ${chalk.bold.cyanBright(removed.fullName)}
+        Student ID: ${chalk.bold.cyanBright(removed.studentIDnumber)}, has re-added in session 2024`);
+        console.log(chalk.bold.cyanBright('~').repeat(60))
     };
 
     //! ______write a Method to find a student by its ID code
@@ -285,6 +292,8 @@ let newStudent = new StudentsArray();
 
 //* create a boolean variable for working while loop
 let condition: boolean = true;
+
+let removed: StudentObj | undefined;
 
 
 //*  while loop to run project
@@ -479,7 +488,7 @@ while (condition) {
 
         case 'RemoveStudent':
             //to take input from user
-            let removed = await inquirer.prompt(
+            let remove = await inquirer.prompt(
                 {
                     name: 'find', type: 'input', message: "Please put student's five digit ID code.",
                     validate: function (find) {
@@ -491,20 +500,29 @@ while (condition) {
             );
 
             //? calling the child class Method to remove student
-            let removedData = newStudent.remove_student(removed.find);
+            removed = newStudent.remove_student(remove.find);
             //* print statement
-            // console.log(`Operation is successful:\n ${remove.fullName}, ID code:${remove.studentIDnumber} is leaved.`)
-
+            if (typeof removed === "undefined"){
+                //nothing to display
+            }else{
+                console.log(chalk.bold.cyanBright('~').repeat(60));
+                console.log(`Operation is successful:\n ${chalk.bold.cyanBright(removed.fullName)},
+                 ID code:${chalk.bold.cyanBright(removed.studentIDnumber)}is removed.`);
+                 console.log(chalk.bold.cyanBright('~').repeat(60))
+            }
             break;
 
         case "Undo":
-            // Ensure index and remove are defined
-            if (typeof index !== 'undefined' && typeof remove !== 'undefined') {
-                // Call the child class method to re-include the last removed student
-                newStudent.undo(index, remove);
-            } else {
+            // Ensure remove is defined
+            if (typeof removed === "undefined"){
                 console.log(chalk.yellowBright("\nNo student to undo removal for.\n"));
+            }else {
+                // Call the child class method to re-include the last removed student
+                newStudent.undo( removed);
             }
+           
+                
+            
 
             break;
 
