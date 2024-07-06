@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 //currency converter by S.R.Chohan
 
 //import inquirer
@@ -17,7 +19,7 @@ let currencies = ['AED(UAE dirham)', 'AFN(afghani)', 'AUD(Australian Dollar)', '
     'BHD(Bahrain Dinar)', 'BND(Brunei DOllar)', 'BRL(Brazilian Real)', 'CAD(Canadian Dollar)', 'CNY(China Yuan)',
     'EGP(Egypt pound)', 'EUR(euro)', 'HKD(Hongkong Dollar)', 'IDR(Indonasian Rupee)', 'INR(Indian Rupee)',
     'IQD(Iraqi Dinar)', 'IRR(Iranian Rial)', 'JPY(Japanese yen)', 'KGS(Kyrgyzstan)', 'KZT(Kazakhystan)',
-    'LBP(Labanon pound)', 'LKR(Srilankan Rupee)', 'MYR(Mmalaysia ringit)', 'NZD(Newzealand Dollar)', 'OMR(Oman Rial)',
+    'LBP(Labanon pound)', 'LKR(Srilankan Rupee)', 'MYR(Malaysia ringit)', 'NZD(Newzealand Dollar)', 'OMR(Oman Rial)',
     'PHP(Phillippines Peso)', 'PKR(Pakistan Rupee)', 'QAR(Qatar Rial)', 'RUB(Russia Rubel)', 'SAR(Saudi Arabia Rial)',
     'SDG(Sudan Pound)', 'SYP(Syria pound)', 'THB(Thailand baht)', 'TJS(Tajikistan)', 'TMT(Turkmenistan)', 'TRY(Turkey Lira)',
     'TWD(Taiwan Dollar)', 'USD(USA Dollar)', 'UZS(Uzbekistan sum)', 'YER(Yemen Rial)', 'ZAR(South Africa Rand)'
@@ -28,7 +30,7 @@ let user = await inquirer.prompt([
     {
         name: 'currentCurrency',
         type: 'list',
-        message: 'choose a currecy which you want to sell:',
+        message: 'choose a currency which you want to sell:',
         choices: currencies
     },
     {
@@ -44,7 +46,7 @@ let user = await inquirer.prompt([
     {
         name: 'requiredCurrency',
         type: 'list',
-        message: 'choose a currecy which you want to buy:',
+        message: 'choose a currency which you want to buy:',
         choices: currencies
     }
 ]);
@@ -80,4 +82,5 @@ let unit = user.amount / rates.sellingCurrency;// convert into base currency
 let conversion = unit * rates.BuyingCurrency;
 
 //final result print statement
-console.log(`Your ${chalk.bold.yellowBright(user.amount)} ${chalk.bold.greenBright(user.currentCurrency)} is converted in ${chalk.bold.yellowBright(conversion)} ${chalk.bold.greenBright(user.requiredCurrency)}`);
+console.log(`Your ${chalk.bold.yellowBright(user.amount)} ${chalk.bold.greenBright(user.currentCurrency)} 
+is converted in ${chalk.bold.yellowBright(conversion)} ${chalk.bold.greenBright(user.requiredCurrency)}`);

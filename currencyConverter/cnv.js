@@ -1,34 +1,30 @@
-"use strict";
+#! /usr/bin/env node
 //currency converter by S.R.Chohan
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
 //import inquirer
-const inquirer_1 = __importDefault(require("inquirer"));
+import inquirer from "inquirer";
 //import chalk
-const chalk_1 = __importDefault(require("chalk"));
+import chalk from "chalk";
 //welcome note
-console.log(chalk_1.default.magentaBright.bold.italic('~'.repeat(60)));
-console.log(chalk_1.default.magentaBright.bold.italic('\tWELCOME IN CURRENCY CONVERTER'));
-console.log(chalk_1.default.magentaBright.bold.italic('\t\tBy S.R.Chohan'));
-console.log(chalk_1.default.magentaBright.bold.italic('_'.repeat(70)));
+console.log(chalk.magentaBright.bold.italic('~'.repeat(60)));
+console.log(chalk.magentaBright.bold.italic('\tWELCOME IN CURRENCY CONVERTER'));
+console.log(chalk.magentaBright.bold.italic('\t\tBy S.R.Chohan'));
+console.log(chalk.magentaBright.bold.italic('_'.repeat(70)));
 //list of currencies with their country names
 let currencies = ['AED(UAE dirham)', 'AFN(afghani)', 'AUD(Australian Dollar)', 'AZN(Azerbaijan manat)', 'BDT(Bangladesh Taka)',
     'BHD(Bahrain Dinar)', 'BND(Brunei DOllar)', 'BRL(Brazilian Real)', 'CAD(Canadian Dollar)', 'CNY(China Yuan)',
     'EGP(Egypt pound)', 'EUR(euro)', 'HKD(Hongkong Dollar)', 'IDR(Indonasian Rupee)', 'INR(Indian Rupee)',
     'IQD(Iraqi Dinar)', 'IRR(Iranian Rial)', 'JPY(Japanese yen)', 'KGS(Kyrgyzstan)', 'KZT(Kazakhystan)',
-    'LBP(Labanon pound)', 'LKR(Srilankan Rupee)', 'MYR(Mmalaysia ringit)', 'NZD(Newzealand Dollar)', 'OMR(Oman Rial)',
+    'LBP(Labanon pound)', 'LKR(Srilankan Rupee)', 'MYR(Malaysia ringit)', 'NZD(Newzealand Dollar)', 'OMR(Oman Rial)',
     'PHP(Phillippines Peso)', 'PKR(Pakistan Rupee)', 'QAR(Qatar Rial)', 'RUB(Russia Rubel)', 'SAR(Saudi Arabia Rial)',
     'SDG(Sudan Pound)', 'SYP(Syria pound)', 'THB(Thailand baht)', 'TJS(Tajikistan)', 'TMT(Turkmenistan)', 'TRY(Turkey Lira)',
     'TWD(Taiwan Dollar)', 'USD(USA Dollar)', 'UZS(Uzbekistan sum)', 'YER(Yemen Rial)', 'ZAR(South Africa Rand)'
 ];
 //take input from user
-let user = await inquirer_1.default.prompt([
+let user = await inquirer.prompt([
     {
         name: 'currentCurrency',
         type: 'list',
-        message: 'choose a currecy which you want to sell:',
+        message: 'choose a currency which you want to sell:',
         choices: currencies
     },
     {
@@ -44,12 +40,12 @@ let user = await inquirer_1.default.prompt([
     {
         name: 'requiredCurrency',
         type: 'list',
-        message: 'choose a currecy which you want to buy:',
+        message: 'choose a currency which you want to buy:',
         choices: currencies
     }
 ]);
 //take current exchange rates from user
-let rates = await inquirer_1.default.prompt([
+let rates = await inquirer.prompt([
     {
         name: 'sellingCurrency',
         type: 'input',
@@ -75,4 +71,5 @@ let rates = await inquirer_1.default.prompt([
 let unit = user.amount / rates.sellingCurrency; // convert into base currency
 let conversion = unit * rates.BuyingCurrency;
 //final result print statement
-console.log(`Your ${chalk_1.default.bold.yellowBright(user.amount)} ${chalk_1.default.bold.greenBright(user.currentCurrency)} is converted in ${chalk_1.default.bold.yellowBright(conversion)} ${chalk_1.default.bold.greenBright(user.requiredCurrency)}`);
+console.log(`Your ${chalk.bold.yellowBright(user.amount)} ${chalk.bold.greenBright(user.currentCurrency)} 
+is converted in ${chalk.bold.yellowBright(conversion)} ${chalk.bold.greenBright(user.requiredCurrency)}`);

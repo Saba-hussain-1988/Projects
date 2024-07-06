@@ -1,6 +1,6 @@
 {
-  "name": "currencyconverter",
-  "version": "1.0.0",
+  "name": "srchohan_currency_converter",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "type": "module",
