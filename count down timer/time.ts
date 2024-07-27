@@ -29,34 +29,28 @@ function startCountDown(sec : number){
 
     // print time in milliseconds from 1 jan 1970
     const currentTime = Date.now();
-
     // convert user's time into milliseconds
     const userEnterTime = sec * 1000;
-
     const totalTime = currentTime + userEnterTime;
 
     // setInterval
     const timer = setInterval(()=>{
         //time in milliseconds
         const currentTime = Date.now();
-    
         // calculate remaining time in milliseconds
         const remainingTime= totalTime - currentTime;
-
         //convert into seconds
-        const inSeconds = Math.floor(remainingTime / 1000);
+        const inSeconds = Math.round(remainingTime / 1000) + 1;
 
         if( inSeconds >= 0){
             //over write statement
             process.stdout.write(chalk.yellowBright(`\rRemaining time ${chalk.greenBright(inSeconds)} seconds;`));
-
         } else {
-
+            // break interval
             clearInterval(timer);
             console.log(chalk.cyanBright("\n\nTime up!"));
             console.log(chalk.cyanBright("Thank you for using my count down timer."))
-        }
-
+        };
     }, 1000);
 }
 

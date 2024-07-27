@@ -32,10 +32,10 @@ function startCountDown(sec) {
         // calculate remaining time in milliseconds
         const remainingTime = totalTime - currentTime;
         //convert into seconds
-        const inSeconds = Math.floor(remainingTime / 1000);
-        const inMinute = Math.floor((remainingTime % (3600 * 24)) / 3600);
+        const inSeconds = Math.round(remainingTime / 1000) + 1;
         if (inSeconds >= 0) {
-            process.stdout.write(chalk.yellowBright(`\rRemaining time ${chalk.greenBright(inMinute.toString().padStart(2, "0"))} : ${chalk.greenBright(inSeconds)} seconds;`));
+            //over write statement
+            process.stdout.write(chalk.yellowBright(`\rRemaining time ${chalk.greenBright(inSeconds)} seconds;`));
         }
         else {
             clearInterval(timer);
@@ -45,7 +45,7 @@ function startCountDown(sec) {
     }, 1000);
 }
 //starting statement
-console.log(chalk.yellowBright(`Starting CountDown for ${chalk.greenBright(seconds)} seconds.....\n`));
+console.log(chalk.yellowBright(`Starting CountDown for ${chalk.greenBright(seconds)} seconds.....`));
 //function invoke
 startCountDown(seconds);
 console.log(chalk.cyanBright("~").repeat(60));
